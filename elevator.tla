@@ -42,8 +42,8 @@ v == <<i, dir>>
 
 L == /\ WF_v(UpBetween)
      /\ WF_v(DnBetween)
-     /\ WF_v(UpFlr)
-     /\ WF_v(DnFlr)
+     /\ WF_v(UpFlr /\ At(1))
+     /\ WF_v(DnFlr /\ At(N))
      /\ \A f \in 2..N-1 :
         /\ SF_v(UpFlr /\ At(f))
         /\ SF_v(DnFlr /\ At(f))
