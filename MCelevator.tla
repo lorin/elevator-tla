@@ -6,8 +6,10 @@ Range == /\ i \geq 0
          /\ i \leq 2*N-1
 
 
-Stuck == []IsBetween
+GetsStuck == <>[]IsBetween
 
-NeverStuck == ~<>Stuck
+DoesntGetsStuck == ~GetsStuck
+
+VisitsEveryFloor == [] \A f \in 1..N : <>At(f)
 
 ====
