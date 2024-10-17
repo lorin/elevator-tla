@@ -38,6 +38,9 @@ Next == \/ UpFlr
         \/ DnFlr
         \/ DnBetween
 
-Spec == Init /\ [][Next]_<<i, dir>>
+L == WF_i(UpBetween \/ DnBetween)
+
+
+Spec == Init /\ [][Next]_<<i, dir>> /\ L
 
 ====
