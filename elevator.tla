@@ -1,7 +1,8 @@
 ---- MODULE elevator ----
 EXTENDS Naturals
 
-CONSTANTS N, Up, Dn
+CONSTANTS N, \* number of floors
+          Up, Dn  \* represents direction
 ASSUME N \in Nat
 
 VARIABLES i, dir
@@ -15,19 +16,23 @@ IsBetween == i % 2 = 0
 Init == /\ i = 1
         /\ dir \in {Up, Dn}
 
+(* move up when at a floor *)
 UpFlr == /\ \E f \in 1..N-1 : At(f)
          /\ i' = i + 1
          /\ dir' = Up
 
+(* move up when between floors *)
 UpBetween == /\ IsBetween
              /\ dir = Up
              /\ i' = i + 1
              /\ UNCHANGED dir
 
+(* move down when at a floor *)
 DnFlr == /\ \E f \in 2..N : At(f)
            /\ i' = i-1
            /\ dir' = Dn
 
+(* move down when between floors *)
 DnBetween == /\ IsBetween
              /\ dir = Dn
              /\ i' = i - 1
