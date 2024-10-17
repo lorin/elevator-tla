@@ -29,8 +29,8 @@ UpBetween == /\ IsBetween
 
 (* move down when at a floor *)
 DnFlr == /\ \E f \in 2..N : At(f)
-           /\ i' = i-1
-           /\ dir' = Dn
+         /\ i' = i-1
+         /\ dir' = Dn
 
 (* move down when between floors *)
 DnBetween == /\ IsBetween
