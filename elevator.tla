@@ -9,6 +9,7 @@ VARIABLES i, dir
 (* True when elevator is at floor f *)
 At(f) == i = 2 * f - 1
 
+(* True when elevator is between floors *)
 IsBetween == i % 2 = 0
 
 Init == /\ i = 1
@@ -37,7 +38,6 @@ Next == \/ UpFlr
         \/ DnFlr
         \/ DnBetween
 
-
 v == <<i, dir>>
 
 L == /\ WF_v(UpBetween)
@@ -45,8 +45,8 @@ L == /\ WF_v(UpBetween)
      /\ WF_v(UpFlr)
      /\ WF_v(DnFlr)
      /\ \A f \in 2..N-1 :
-        /\ SF_i(UpFlr /\ At(f))
-        /\ SF_i(DnFlr /\ At(f))
+        /\ SF_v(UpFlr /\ At(f))
+        /\ SF_v(DnFlr /\ At(f))
 
 Spec == Init /\ [][Next]_v /\ L
 
