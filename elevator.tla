@@ -7,7 +7,7 @@ ASSUME N \in Nat
 VARIABLES i, dir
 
 (* True when elevator is at floor f *)
-At(f) == i = 2*f - 1
+At(f) == i = 2 * f - 1
 
 IsBetween == i % 2 = 0
 
@@ -37,13 +37,17 @@ Next == \/ UpFlr
         \/ DnFlr
         \/ DnBetween
 
-L == /\ WF_i(UpBetween \/ DnBetween)
-     /\ WF_i(UpFlr)
-     /\ WF_i(DnFlr)
+
+v == <<i, dir>>
+
+L == /\ WF_v(UpBetween)
+     /\ WF_v(DnBetween)
+     /\ WF_v(UpFlr)
+     /\ WF_v(DnFlr)
      /\ \A f \in 2..N-1 :
         /\ SF_i(UpFlr /\ At(f))
         /\ SF_i(DnFlr /\ At(f))
 
-Spec == Init /\ [][Next]_<<i, dir>> /\ L
+Spec == Init /\ [][Next]_v /\ L
 
 ====
